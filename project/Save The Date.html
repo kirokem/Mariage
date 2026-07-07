@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Save the Date — Charlène & Julien · 11—13 juin 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  :root{
+    --paper:#faf7f2;
+    --paper-2:#f2ede4;
+    --ink:#1a1a1a;
+    --ink-60:rgba(26,26,26,.62);
+    --ink-40:rgba(26,26,26,.42);
+    --ink-15:rgba(26,26,26,.15);
+    --ink-08:rgba(26,26,26,.08);
+    --accent: oklch(0.58 0.06 45);
+    --serif:'EB Garamond', 'Times New Roman', serif;
+    --sans:'Inter', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:15px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    min-height:100vh;
+  }
+  .mono-label{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--ink-60);
+    font-weight:500;
+  }
+  .serif{font-family:var(--serif)}
+  button{font-family:inherit}
+  a{color:inherit;text-decoration:none}
+
+  @keyframes fadeUp { from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none} }
+  .fu{ opacity:0; animation: fadeUp .9s cubic-bezier(.2,.7,.2,1) forwards }
+
+  .ph{
+    background:
+      repeating-linear-gradient(135deg, rgba(26,26,26,.04) 0 1px, transparent 1px 12px),
+      var(--paper-2);
+    border:1px solid var(--ink-15);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--sans);font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-60);
+  }
+
+  @media print {
+    .no-print { display:none !important }
+    body { background:white }
+    .card { box-shadow:none !important; border:1px solid #1a1a1a !important }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { useState, useEffect } = React;
+
+/* ─── Countdown */
+function useCountdown(){
+  const target = new Date('2027-06-11T16:00:00+02:00').getTime();
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const diff = Math.max(0, target - now);
+  return {
+    d: Math.floor(diff/86400000),
+    h: Math.floor((diff%86400000)/3600000),
+    m: Math.floor((diff%3600000)/60000),
+    s: Math.floor((diff%60000)/1000),
+  };
+}
+
+/* ─── Decorative sprig (olive branch), hand-tuned simple svg */
+function Sprig({ flip, style }){
+  return (
+    <svg viewBox="0 0 120 40" style={{width:'100%', height:'auto', transform:flip?'scaleX(-1)':'none', ...style}}>
+      <g fill="none" stroke="var(--accent)" strokeWidth="0.8" strokeLinecap="round">
+        <path d="M 4 20 Q 40 18 70 20 T 116 22"/>
+        {[10,22,34,46,58,70,82,94].map((x,i)=>(
+          <g key={i}>
+            <ellipse cx={x} cy={20 - (i%2?6:-6)} rx="6" ry="2.2" transform={`rotate(${i%2?-28:28} ${x} ${20 - (i%2?6:-6)})`} fill="color-mix(in oklab, var(--accent) 22%, transparent)" stroke="var(--accent)" strokeWidth="0.6"/>
+          </g>
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+/* ─── Save The Date card */
+function SaveTheDate(){
+  const { d, h, m, s } = useCountdown();
+  const [copied, setCopied] = useState(false);
+
+  const ics = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Charlene-Julien//Save The Date//FR
+BEGIN:VEVENT
+UID:charlene-julien-2027@mariage
+DTSTAMP:20260423T000000Z
+DTSTART;VALUE=DATE:20270611
+DTEND;VALUE=DATE:20270614
+SUMMARY:Mariage de Charlène & Julien
+LOCATION:Château les Oliviers de Salette, Provence
+DESCRIPTION:Save the date — plus d'informations à venir.
+END:VEVENT
+END:VCALENDAR`;
+
+  const downloadIcs = () => {
+    const blob = new Blob([ics], { type:'text/calendar' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'charlene-julien-11-13-juin-2027.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(()=>setCopied(false), 2000);
+    } catch(e){}
+  };
+
+  const cell = (n,label) => (
+    <div style={{textAlign:'center', flex:1}}>
+      <div style={{fontFamily:'var(--serif)', fontSize:'clamp(24px,3vw,34px)', lineHeight:1, fontVariantNumeric:'tabular-nums'}}>{String(n).padStart(2,'0')}</div>
+      <div className="mono-label" style={{marginTop:6, fontSize:9}}>{label}</div>
+    </div>
+  );
+
+  return (
+    <div style={{
+      minHeight:'100vh',
+      background:'var(--paper)',
+      padding:'40px 20px',
+      display:'flex', alignItems:'center', justifyContent:'center',
+      position:'relative', overflow:'hidden',
+    }}>
+      {/* Corner marks */}
+      <svg style={{position:'absolute', top:24, left:24}} width="28" height="28" viewBox="0 0 28 28">
+        <path d="M 0 8 L 0 0 L 8 0" stroke="var(--ink)" strokeWidth="0.8" fill="none"/>
+      </svg>
+      <svg style={{position:'absolute', top:24, right:24}} width="28" height="28" viewBox="0 0 28 28">
+        <path d="M 20 0 L 28 0 L 28 8" stroke="var(--ink)" strokeWidth="0.8" fill="none"/>
+      </svg>
+      <svg style={{position:'absolute', bottom:24, left:24}} width="28" height="28" viewBox="0 0 28 28">
+        <path d="M 0 20 L 0 28 L 8 28" stroke="var(--ink)" strokeWidth="0.8" fill="none"/>
+      </svg>
+      <svg style={{position:'absolute', bottom:24, right:24}} width="28" height="28" viewBox="0 0 28 28">
+        <path d="M 20 28 L 28 28 L 28 20" stroke="var(--ink)" strokeWidth="0.8" fill="none"/>
+      </svg>
+
+      {/* Mailing marks top-right */}
+      <div className="no-print" style={{position:'absolute', top:40, right:56, textAlign:'right', color:'var(--ink-40)', fontSize:10, letterSpacing:'.18em', textTransform:'uppercase'}}>
+        <div>par avion · par la poste</div>
+        <div style={{marginTop:4}}>→ à ouvrir sans modération</div>
+      </div>
+
+      {/* Card */}
+      <div className="card fu" style={{
+        width:'100%', maxWidth:720,
+        background:'var(--paper)',
+        border:'1px solid var(--ink-15)',
+        padding:'clamp(32px,5vw,64px) clamp(28px,5vw,72px)',
+        position:'relative',
+        boxShadow:'0 40px 80px -40px rgba(26,26,26,0.15), 0 10px 30px -20px rgba(26,26,26,0.1)',
+        animationDelay:'.1s',
+      }}>
+
+        {/* inner double rule */}
+        <div style={{position:'absolute', inset:16, border:'1px solid var(--ink-08)', pointerEvents:'none'}}/>
+
+        {/* header */}
+        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', position:'relative', zIndex:1}}>
+          <span className="mono-label" style={{fontSize:10}}>N° 001 / LXXV</span>
+          <span className="mono-label" style={{fontSize:10}}>MMXXVII</span>
+        </div>
+
+        {/* center */}
+        <div style={{textAlign:'center', marginTop:'clamp(32px,5vw,56px)', position:'relative', zIndex:1}}>
+          <div className="mono-label fu" style={{animationDelay:'.25s'}}>— Réservez la date —</div>
+
+          <div style={{margin:'28px auto 0', maxWidth:220}} className="fu" style={{animationDelay:'.4s', margin:'28px auto 0', maxWidth:220}}>
+            <Sprig />
+          </div>
+
+          <h1 className="fu" style={{
+            fontFamily:'var(--serif)', fontWeight:400,
+            fontSize:'clamp(56px,10vw,132px)', lineHeight:0.9,
+            letterSpacing:'-0.03em',
+            margin:'24px 0 0',
+            animationDelay:'.5s',
+          }}>
+            Charlène
+            <div style={{fontStyle:'italic', fontSize:'0.48em', color:'var(--ink-60)', margin:'4px 0', fontWeight:400, fontFamily:'var(--serif)'}}>&amp;</div>
+            Julien
+          </h1>
+
+          <div className="fu" style={{margin:'24px auto 0', maxWidth:220, animationDelay:'.65s'}}>
+            <Sprig flip />
+          </div>
+
+          <p className="fu" style={{
+            marginTop:32, fontFamily:'var(--serif)', fontStyle:'italic',
+            fontSize:'clamp(17px,1.6vw,22px)', color:'var(--ink-60)',
+            animationDelay:'.8s',
+          }}>
+            ont la joie de vous convier à leur mariage
+          </p>
+
+          {/* date block */}
+          <div className="fu" style={{
+            margin:'32px 0 0',
+            display:'grid',
+            gridTemplateColumns:'1fr 1fr 1fr 1fr',
+            alignItems:'center',
+            padding:'20px clamp(8px,2vw,24px)',
+            borderTop:'1px solid var(--ink)',
+            borderBottom:'1px solid var(--ink)',
+            animationDelay:'.95s',
+          }}>
+            <div style={{textAlign:'center', padding:'0 6px'}}>
+              <div className="mono-label" style={{fontSize:9}}>Vendredi</div>
+              <div style={{fontFamily:'var(--serif)', fontStyle:'italic', fontSize:'clamp(28px,3.4vw,44px)', lineHeight:1, marginTop:4}}>11</div>
+            </div>
+            <div style={{textAlign:'center', padding:'0 6px', borderLeft:'1px solid var(--ink-15)'}}>
+              <div className="mono-label" style={{fontSize:9}}>Dimanche</div>
+              <div style={{fontFamily:'var(--serif)', fontStyle:'italic', fontSize:'clamp(28px,3.4vw,44px)', lineHeight:1, marginTop:4}}>13</div>
+            </div>
+            <div style={{textAlign:'center', padding:'0 6px', borderLeft:'1px solid var(--ink-15)'}}>
+              <div className="mono-label" style={{fontSize:9}}>Mois</div>
+              <div style={{fontFamily:'var(--serif)', fontStyle:'italic', fontSize:'clamp(28px,3.4vw,44px)', lineHeight:1, marginTop:4}}>Juin</div>
+            </div>
+            <div style={{textAlign:'center', padding:'0 6px', borderLeft:'1px solid var(--ink-15)'}}>
+              <div className="mono-label" style={{fontSize:9}}>Année</div>
+              <div style={{fontFamily:'var(--serif)', fontStyle:'italic', fontSize:'clamp(28px,3.4vw,44px)', lineHeight:1, marginTop:4}}>2027</div>
+            </div>
+          </div>
+
+          {/* location */}
+          <p className="fu" style={{
+            marginTop:28, fontFamily:'var(--serif)',
+            fontSize:'clamp(17px,1.5vw,20px)',
+            animationDelay:'1.1s',
+          }}>
+            au <em>Château les Oliviers de Salette</em>
+            <br/>
+            <span style={{color:'var(--ink-60)', fontSize:'0.85em'}}>Provence · France</span>
+          </p>
+
+          <p className="fu" style={{
+            marginTop:40, fontFamily:'var(--serif)', fontStyle:'italic',
+            fontSize:15, color:'var(--ink-60)', lineHeight:1.6,
+            animationDelay:'1.25s',
+          }}>
+            Un faire-part suivra. En attendant : <br/>notez la date, préparez vos plus beaux lins.
+          </p>
+        </div>
+
+        {/* footer */}
+        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginTop:'clamp(32px,5vw,56px)', position:'relative', zIndex:1}}>
+          <span className="mono-label" style={{fontStyle:'italic', fontFamily:'var(--serif)', textTransform:'none', letterSpacing:'normal', fontSize:14, color:'var(--ink-60)'}}>— C &amp; J —</span>
+          <span className="mono-label" style={{fontSize:10}}>Provence</span>
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="no-print fu" style={{
+        position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)',
+        display:'flex', gap:12, zIndex:10,
+        animationDelay:'1.6s',
+      }}>
+        <button onClick={downloadIcs} style={{
+          background:'var(--ink)', color:'var(--paper)', border:'1px solid var(--ink)',
+          padding:'12px 22px', fontSize:11, letterSpacing:'.15em', textTransform:'uppercase',
+          cursor:'pointer', fontWeight:500,
+        }}>Ajouter au calendrier</button>
+        <button onClick={() => window.print()} style={{
+          background:'transparent', color:'var(--ink)', border:'1px solid var(--ink)',
+          padding:'12px 22px', fontSize:11, letterSpacing:'.15em', textTransform:'uppercase',
+          cursor:'pointer', fontWeight:500,
+        }}>Imprimer</button>
+        <button onClick={copyLink} style={{
+          background:'transparent', color:'var(--ink)', border:'1px solid var(--ink)',
+          padding:'12px 22px', fontSize:11, letterSpacing:'.15em', textTransform:'uppercase',
+          cursor:'pointer', fontWeight:500, minWidth:140,
+        }}>{copied ? '✓ copié' : 'Partager'}</button>
+        <a href="Mariage.html" style={{
+          background:'transparent', color:'var(--ink)', border:'1px solid var(--ink-15)',
+          padding:'12px 22px', fontSize:11, letterSpacing:'.15em', textTransform:'uppercase',
+          fontWeight:500, display:'inline-flex', alignItems:'center',
+        }}>Site complet →</a>
+      </div>
+
+      {/* Back-of-card signature strip, visible at bottom-left */}
+      <div className="no-print" style={{position:'absolute', bottom:32, left:56, color:'var(--ink-40)', fontSize:10, letterSpacing:'.18em', textTransform:'uppercase'}}>
+        <div>Postmark · Provence</div>
+        <div style={{marginTop:4, fontFamily:'var(--serif)', fontStyle:'italic', textTransform:'none', letterSpacing:'normal', fontSize:13, color:'var(--ink-60)'}}>ne pas plier · fragile</div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<SaveTheDate/>);
+</script>
+</body>
+</html>

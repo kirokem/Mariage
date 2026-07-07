@@ -1,0 +1,20 @@
+{
+  "name": "charlene-et-julien",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Site de mariage — Charlène & Julien, 11-13 juin 2027",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c blue,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
+    "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "build": "npm run build -w client",
+    "start": "npm run start -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
