@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: mariage-api
+    runtime: node
+    plan: free
+    region: frankfurt
+    branch: claude/loving-allen-wxh5af
+    buildCommand: npm install
+    startCommand: npm run start -w server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SITE_PASSWORD
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false
