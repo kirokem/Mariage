@@ -24,12 +24,6 @@ db.exec(`
     total INTEGER NOT NULL,
     created_at INTEGER NOT NULL
   );
-
-  CREATE TABLE IF NOT EXISTS photos (
-    slot_id TEXT PRIMARY KEY,
-    filename TEXT NOT NULL,
-    updated_at INTEGER NOT NULL
-  );
 `);
 
 const roomById = new Map(ROOMS.map((r) => [r.id, r]));
