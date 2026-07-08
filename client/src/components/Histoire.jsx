@@ -1,4 +1,4 @@
-import PhotoSlot from './PhotoSlot.jsx';
+import StaticPhoto from './StaticPhoto.jsx';
 
 export default function Histoire() {
   return (
@@ -28,7 +28,7 @@ export default function Histoire() {
           </div>
         </div>
         <div>
-          <PhotoSlot id="couple" label="photo · couple" aspectRatio="3/4" />
+          <StaticPhoto src={null} alt="Charlène & Julien" label="photo · couple" aspectRatio="3/4" />
           <div className="mono-label" style={{ marginTop: 12, textAlign: 'right' }}>— pl. Charlène &amp; Julien</div>
         </div>
       </div>
