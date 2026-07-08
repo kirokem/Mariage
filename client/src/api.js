@@ -3,7 +3,7 @@ const API_BASE = import.meta.env.VITE_API_BASE || '';
 async function request(path, options = {}) {
   const res = await fetch(`${API_BASE}/api${path}`, {
     credentials: 'include',
-    headers: options.body instanceof FormData ? undefined : { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     ...options
   });
   let data = null;
@@ -23,21 +23,5 @@ export const api = {
   logout: () => request('/auth/logout', { method: 'POST' }),
 
   getRooms: () => request('/rooms'),
-  createBooking: (payload) => request('/bookings', { method: 'POST', body: JSON.stringify(payload) }),
-
-  getPhotos: () => request('/photos'),
-  uploadPhoto: (slotId, file) => {
-    const form = new FormData();
-    form.append('photo', file);
-    return request(`/photos/${slotId}`, { method: 'POST', body: form });
-  },
-  deletePhoto: (slotId) => request(`/photos/${slotId}`, { method: 'DELETE' })
+  createBooking: (payload) => request('/bookings', { method: 'POST', body: JSON.stringify(payload) })
 };
-
-// Uploaded photo URLs come back from the API as paths relative to the backend
-// (e.g. "/uploads/x.jpg"); when the frontend and backend are on different
-// origins (GitHub Pages + Render), they need to be resolved against API_BASE.
-export function resolveMediaUrl(path) {
-  if (!path) return path;
-  return `${API_BASE}${path}`;
-}
