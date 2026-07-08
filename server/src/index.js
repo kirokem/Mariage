@@ -4,11 +4,9 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import './db.js';
 import { requireAuth } from './middleware/auth.js';
-import { uploadsDir } from './routes/photos.js';
 import authRoutes from './routes/auth.js';
 import roomsRoutes from './routes/rooms.js';
 import bookingsRoutes from './routes/bookings.js';
-import photosRoutes from './routes/photos.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -23,12 +21,10 @@ app.set('trust proxy', 1);
 app.use(cors({ origin: CLIENT_ORIGIN, credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
-app.use('/uploads', express.static(uploadsDir));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/rooms', requireAuth, roomsRoutes);
 app.use('/api/bookings', requireAuth, bookingsRoutes);
-app.use('/api/photos', requireAuth, photosRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);
