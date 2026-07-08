@@ -1,4 +1,6 @@
-import PhotoSlot from './PhotoSlot.jsx';
+import StaticPhoto from './StaticPhoto.jsx';
+
+const PHOTOS_BASE = `${import.meta.env.BASE_URL}photos`;
 
 export default function Lieu() {
   return (
@@ -10,10 +12,10 @@ export default function Lieu() {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'start' }}>
         <div>
-          <PhotoSlot id="chateau" label="photo · château les oliviers de salette" aspectRatio="4/5" />
+          <StaticPhoto src={`${PHOTOS_BASE}/chateau.jpg`} alt="Château les Oliviers de Salette" aspectRatio="4/5" />
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 12 }}>
-            <PhotoSlot id="jardin" label="photo · jardin" aspectRatio="1/1" />
-            <PhotoSlot id="orangerie" label="photo · orangerie" aspectRatio="1/1" />
+            <StaticPhoto src={`${PHOTOS_BASE}/jardin.jpg`} alt="Jardin" aspectRatio="1/1" />
+            <StaticPhoto src={`${PHOTOS_BASE}/orangerie.jpg`} alt="Orangerie" aspectRatio="1/1" />
           </div>
         </div>
         <div>
