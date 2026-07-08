@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { api } from './api.js';
-import { PhotosProvider } from './context/PhotosContext.jsx';
 import Gate from './components/Gate.jsx';
 import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
@@ -41,17 +40,15 @@ export default function App() {
     <>
       {!unlocked && <Gate onUnlock={() => setUnlocked(true)} />}
       <div id="top" style={{ filter: unlocked ? 'none' : 'blur(20px)', pointerEvents: unlocked ? 'auto' : 'none' }} aria-hidden={!unlocked}>
-        <PhotosProvider enabled={unlocked}>
-          <Nav active={activeSection} />
-          <Hero />
-          <Histoire />
-          <Programme />
-          <Lieu />
-          <Chambres enabled={unlocked} />
-          <Acces />
-          <Dresscode />
-          <Footer />
-        </PhotosProvider>
+        <Nav active={activeSection} />
+        <Hero />
+        <Histoire />
+        <Programme />
+        <Lieu />
+        <Chambres enabled={unlocked} />
+        <Acces />
+        <Dresscode />
+        <Footer />
       </div>
     </>
   );
