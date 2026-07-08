@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { api } from '../api.js';
+import { api, resolveMediaUrl } from '../api.js';
 
 const PhotosContext = createContext(null);
 
@@ -9,12 +9,18 @@ export function PhotosProvider({ children, enabled = true }) {
 
   useEffect(() => {
     if (!enabled) return;
-    api.getPhotos().then((map) => { setPhotos(map || {}); setLoaded(true); }).catch(() => setLoaded(true));
+    api.getPhotos()
+      .then((map) => {
+        const resolved = Object.fromEntries(Object.entries(map || {}).map(([id, url]) => [id, resolveMediaUrl(url)]));
+        setPhotos(resolved);
+        setLoaded(true);
+      })
+      .catch(() => setLoaded(true));
   }, [enabled]);
 
   const upload = useCallback(async (slotId, file) => {
     const { url } = await api.uploadPhoto(slotId, file);
-    setPhotos((prev) => ({ ...prev, [slotId]: `${url}?t=${Date.now()}` }));
+    setPhotos((prev) => ({ ...prev, [slotId]: `${resolveMediaUrl(url)}?t=${Date.now()}` }));
   }, []);
 
   const remove = useCallback(async (slotId) => {
