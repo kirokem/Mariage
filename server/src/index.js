@@ -12,7 +12,13 @@ import photosRoutes from './routes/photos.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+// Origin only (scheme + host), e.g. https://kirokem.github.io — not the /Mariage/ subpath.
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
+
+// Render (and most PaaS) terminate TLS at a reverse proxy in front of the app,
+// so Express needs this to know a request was actually HTTPS — required for
+// Secure cookies to be set correctly in production.
+app.set('trust proxy', 1);
 
 app.use(cors({ origin: CLIENT_ORIGIN, credentials: true }));
 app.use(cookieParser());
