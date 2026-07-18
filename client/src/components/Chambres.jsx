@@ -84,7 +84,7 @@ export default function Chambres({ enabled = true }) {
         <h2 className="section-title">Choisissez votre <em>chambre</em>.</h2>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 32, marginBottom: 40 }}>
+      <div className="grid-stack-mobile" style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 32, marginBottom: 40 }}>
         <div />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 24, padding: '24px 0', borderTop: '1px solid var(--ink-15)', borderBottom: '1px solid var(--ink-15)' }}>
           <div>
@@ -109,7 +109,7 @@ export default function Chambres({ enabled = true }) {
       ) : loading ? (
         <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--ink-60)' }}>Chargement des chambres…</div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+        <div className="grid-stack-mobile" style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
           <div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
               {['toutes', ...wings].map((w) => (
@@ -168,7 +168,7 @@ export default function Chambres({ enabled = true }) {
             ))}
           </div>
 
-          <div style={{ position: 'sticky', top: 100 }}>
+          <div className="chambres-recap" style={{ position: 'sticky', top: 100 }}>
             <div style={{ border: '1px solid var(--ink)', padding: 32, background: 'var(--paper)' }}>
               <div className="mono-label">Récapitulatif</div>
               <h3 style={{ fontFamily: 'var(--serif)', fontSize: 32, fontStyle: 'italic', lineHeight: 1.1, marginTop: 8 }}>

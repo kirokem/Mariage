@@ -48,6 +48,14 @@ button { font: inherit; }
 @media (max-width: 720px) {
   .section { padding: 80px 24px; }
   .section-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
+  .grid-stack-mobile { grid-template-columns: 1fr !important; }
+  .chambres-recap { position: static !important; top: auto !important; }
+  .nav-bar {
+    padding-left: 24px !important; padding-right: 24px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-bar > * { flex-shrink: 0; }
 }
 
 .ph {

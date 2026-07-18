@@ -10,7 +10,7 @@ export default function Lieu() {
         <h2 className="section-title">Un <em>château</em>, quelques oliviers.</h2>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'start' }}>
+      <div className="grid-stack-mobile" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'start' }}>
         <div>
           <StaticPhoto src={`${PHOTOS_BASE}/chateau.jpg`} alt="Château les Oliviers de Salette" aspectRatio="4/5" />
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 12 }}>

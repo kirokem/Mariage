@@ -7,7 +7,7 @@ export default function Histoire() {
         <div className="section-num">I.</div>
         <h2 className="section-title">Notre <em>histoire</em></h2>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr 1fr', gap: 32 }}>
+      <div className="grid-stack-mobile" style={{ display: 'grid', gridTemplateColumns: '120px 1fr 1fr', gap: 32 }}>
         <div />
         <div>
           <p style={{ fontFamily: 'var(--serif)', fontSize: 22, lineHeight: 1.5, textWrap: 'pretty' }}>

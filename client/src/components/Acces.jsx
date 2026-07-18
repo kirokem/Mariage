@@ -13,7 +13,7 @@ export default function Acces() {
         <h2 className="section-title">Pour nous <em>rejoindre</em>.</h2>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48 }}>
+      <div className="grid-stack-mobile" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48 }}>
         <div style={{
           aspectRatio: '4/5',
           background: 'var(--paper-2)',
@@ -106,7 +106,7 @@ export default function Acces() {
           </div>
           <div style={{ height: 1, background: 'var(--ink-15)', margin: '32px 0' }} />
           {OPTIONS.map(([title, desc, meta], i) => (
-            <div key={i} style={{ display: 'grid', gridTemplateColumns: '32px 1fr 140px', gap: 20, padding: '24px 0', borderBottom: i < OPTIONS.length - 1 ? '1px solid var(--ink-08)' : 'none' }}>
+            <div key={i} className="grid-stack-mobile" style={{ display: 'grid', gridTemplateColumns: '32px 1fr 140px', gap: 20, padding: '24px 0', borderBottom: i < OPTIONS.length - 1 ? '1px solid var(--ink-08)' : 'none' }}>
               <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--ink-40)' }}>0{i + 1}</div>
               <div>
                 <div style={{ fontFamily: 'var(--serif)', fontSize: 22, fontStyle: 'italic' }}>{title}</div>

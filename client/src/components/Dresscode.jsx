@@ -15,7 +15,7 @@ export default function Dresscode() {
         <h2 className="section-title">Dress <em>code</em>.</h2>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr 1fr', gap: 48, alignItems: 'start' }}>
+      <div className="grid-stack-mobile" style={{ display: 'grid', gridTemplateColumns: '120px 1fr 1fr', gap: 48, alignItems: 'start' }}>
         <div />
         <div>
           <p style={{ fontFamily: 'var(--serif)', fontSize: 24, lineHeight: 1.4, textWrap: 'pretty' }}>

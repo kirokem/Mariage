@@ -19,13 +19,14 @@ export default function Nav({ active }) {
   }, []);
 
   return (
-    <nav style={{
+    <nav className="nav-bar" style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
       padding: '16px 48px',
       background: 'color-mix(in oklab, var(--paper) 88%, transparent)',
       backdropFilter: 'blur(12px)',
       borderBottom: '1px solid var(--ink-08)',
       display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+      gap: 24,
       transform: hidden ? 'translateY(-110%)' : 'translateY(0)',
       transition: 'transform .5s cubic-bezier(.2,.7,.2,1)'
     }}>

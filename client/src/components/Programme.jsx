@@ -8,7 +8,7 @@ export default function Programme() {
         <h2 className="section-title">Trois jours, <em>un seul</em> fil.</h2>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 32 }}>
+      <div className="grid-stack-mobile" style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 32 }}>
         <div />
         <div style={{ borderTop: '1px solid var(--ink-15)' }}>
           {PROGRAMME.map((day, i) => (
@@ -20,7 +20,7 @@ export default function Programme() {
               paddingLeft: day.highlight ? '24px' : '0',
               paddingRight: day.highlight ? '24px' : '0'
             }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: 48 }}>
+              <div className="grid-stack-mobile" style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: 48 }}>
                 <div>
                   <div className="mono-label" style={{ color: day.highlight ? 'var(--accent)' : 'var(--ink-60)' }}>{day.day}</div>
                   <div style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(32px,3.5vw,48px)', fontStyle: 'italic', lineHeight: 1, marginTop: 12 }}>{day.date}</div>
