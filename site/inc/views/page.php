@@ -41,13 +41,13 @@ include __DIR__ . '/head.php';
   <?php
   include __DIR__ . '/sections/accueil.php';
   include __DIR__ . '/sections/programme.php';
-  if ($img = photo('apres_programme', '(min-width: 64em) 60rem, 100vw')) {
+  if ($img = photo('apres_programme', '100vw')) {
       echo '<figure class="interlude reveal">' . $img . '</figure>';
   }
   include __DIR__ . '/sections/acces.php';
   include __DIR__ . '/sections/hebergement.php';
   include __DIR__ . '/sections/infos.php';
-  if ($img = photo('apres_infos', '(min-width: 64em) 60rem, 100vw')) {
+  if ($img = photo('apres_infos', '100vw')) {
       echo '<figure class="interlude reveal">' . $img . '</figure>';
   }
   include __DIR__ . '/sections/rsvp.php';

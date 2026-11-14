@@ -140,14 +140,15 @@ function photo(string $key, string $sizes, bool $eager = false): string
     [$width, $height] = @getimagesize($default) ?: [0, 0];
 
     return sprintf(
-        '<img src="%s" srcset="%s" sizes="%s" width="%d" height="%d" alt="%s" decoding="async" %s>',
+        '<img class="photo%s" src="%s" srcset="%s" sizes="%s" width="%d" height="%d" alt="%s" decoding="async" %s>',
+        !empty($p['recadrer']) ? ' photo--cover' : '',
         e('assets/photos/' . basename($default)),
         e(implode(', ', $srcset)),
         e($sizes),
         $width,
         $height,
         e($p['description'] ?? ''),
-        $eager ? 'fetchpriority="high"' : 'loading="lazy"'
+        'loading="lazy"'
     );
 }
 

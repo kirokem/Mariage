@@ -28,7 +28,7 @@ include __DIR__ . '/head.php';
       <?php if ($gateError): ?>
         <p class="field__error" id="gate-erreur" role="alert"><?= e($gateError) ?></p>
       <?php endif; ?>
-      <button class="btn btn--full" type="submit"><?= e($entree['bouton']) ?></button>
+      <button class="btn btn--solid btn--full" type="submit"><?= e($entree['bouton']) ?></button>
     </form>
   </div>
 </main>

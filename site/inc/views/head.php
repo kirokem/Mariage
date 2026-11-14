@@ -12,13 +12,14 @@ $site = content('site');
 <meta name="description" content="<?= e($site['maries'] . ' · ' . $site['dates_long'] . ' · ' . $site['lieu']) ?>">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="referrer" content="same-origin">
-<meta name="theme-color" content="#7E3348">
+<meta name="theme-color" content="#F2ECE3">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/cormorant-garamond-300.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/cormorant-garamond-400-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/inter-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="<?= asset('assets/css/site.css') ?>">
 <script src="<?= asset('assets/js/site.js') ?>" defer></script>
 <?php if (!empty($inlineStyle)): ?>

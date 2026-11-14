@@ -3,7 +3,7 @@
 defined('CJ') || exit;
 $c = content('contact');
 ?>
-<section id="contact" class="section section--cream" aria-labelledby="contact-titre">
+<section id="contact" class="section section--sage" aria-labelledby="contact-titre">
   <div class="wrap wrap--narrow center">
     <header class="section__head reveal">
       <p class="eyebrow"><?= t($c['surtitre']) ?></p>

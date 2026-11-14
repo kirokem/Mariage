@@ -5,7 +5,7 @@
 #  1. Déposez vos photos originales dans le dossier photos/ (à la racine).
 #  2. Lancez :  tools/optimize-photos.sh
 #  3. Les fichiers sont créés dans site/assets/photos/ sous la forme
-#     nom-480.webp, nom-960.webp, nom-1600.webp, nom-2400.webp
+#     nom-480.webp, nom-960.webp, nom-1440.webp, nom-2000.webp
 #  4. Indiquez le « nom » (sans tiret ni taille) dans site/content.php > photos.
 #
 #  Aucune photo n'est recadrée : seule la largeur est réduite, les
@@ -20,8 +20,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SRC="$ROOT/photos"
 DEST="$ROOT/site/assets/photos"
-WIDTHS=(480 960 1600 2400)
-QUALITY=78
+WIDTHS=(480 720 960 1440 2000)
+QUALITY=66
 
 if command -v magick >/dev/null 2>&1; then IM=(magick); elif command -v convert >/dev/null 2>&1; then IM=(convert); else
   echo "ImageMagick est introuvable : installez-le d'abord (voir l'en-tête de ce script)." >&2; exit 1

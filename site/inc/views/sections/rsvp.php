@@ -145,7 +145,7 @@ $intro = implode('<strong>' . t($r['date_limite']) . '</strong>', array_map('t',
         <?= $error('message') ?>
       </div>
 
-      <button class="btn btn--full" type="submit" data-rsvp-submit><?= t($f['bouton']) ?></button>
+      <button class="btn btn--solid btn--full" type="submit" data-rsvp-submit><?= t($f['bouton']) ?></button>
     </form>
   </div>
 </section>

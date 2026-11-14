@@ -83,10 +83,13 @@ return [
     // et une courte description pour les personnes malvoyantes.
     // Laissez '' pour ne pas afficher de photo à cet endroit : la mise en page
     // s'adapte toute seule, sans cadre vide.
+    // « recadrer » : true autorise un recadrage panoramique (bandeaux pleine
+    // largeur) ; laissez false pour les photos avec des visages.
     'photos' => [
-        'accueil'          => ['fichier' => '', 'description' => ''],
-        'apres_programme'  => ['fichier' => '', 'description' => ''],
-        'apres_infos'      => ['fichier' => '', 'description' => ''],
+        'accueil'          => ['fichier' => 'chateau',   'description' => 'Le Château des Oliviers de Salettes, sa façade en pierre et sa piscine, entourés de verdure', 'recadrer' => false],
+        'apres_programme'  => ['fichier' => 'orangerie', 'description' => 'Vue depuis le domaine sur les champs de lavande et les collines de la Drôme provençale', 'recadrer' => true],
+        'hebergement'      => ['fichier' => 'jardin',    'description' => 'La piscine du château et ses toits de tuiles, vus du ciel', 'recadrer' => false],
+        'apres_infos'      => ['fichier' => '',          'description' => '', 'recadrer' => false],
     ],
 
     /* ------------------------------------------------------------------ */

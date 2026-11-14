@@ -1,5 +1,5 @@
 """
-Génère les favicons « C&J » (Bebas Neue, crème sur fond prune).
+Génère les favicons « C&J » (Bebas Neue, beige sur fond vert olive).
 Les lettres sont converties en tracés : aucune police n'est nécessaire
 pour afficher l'icône.
 
@@ -45,8 +45,8 @@ groups = "".join(
 )
 svg = (
     f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size} {size}">'
-    f'<rect width="{size}" height="{size}" fill="#7E3348"/>'
-    f'<g fill="#ECE7E4" transform="translate({tx:.2f} {ty:.2f}) scale({scale:.5f} {-scale:.5f})">{groups}</g>'
+    f'<rect width="{size}" height="{size}" fill="#626C4A"/>'
+    f'<g fill="#F2ECE3" transform="translate({tx:.2f} {ty:.2f}) scale({scale:.5f} {-scale:.5f})">{groups}</g>'
     "</svg>\n"
 )
 (ROOT / "site/favicon.svg").write_text(svg)

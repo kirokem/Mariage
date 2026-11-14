@@ -8,18 +8,18 @@ Dans ce fichier, chaque information manquante est écrite `TODO`. Remplacez `TOD
 
 | # | Information | Section du site | Emplacement dans `site/content.php` |
 |---|---|---|---|
-| 1 | Horaire du brunch | Programme › Dimanche | `programme` › `jours` › Dimanche › `heure` (l. 148) |
-| 2 | Lieu du brunch dans le domaine | Programme › Dimanche | `programme` › `jours` › Dimanche › `lieu` (l. 149) |
-| 3 | Informations parking | Accès | `acces` › `blocs` › Parking › `texte` (l. 174) |
-| 4 | Venir en train ou en avion (gares, aéroports…). *Bloc facultatif, supprimable.* | Accès | `acces` › `blocs` › En train ou en avion › `texte` (l. 183) |
-| 5 | Heure d'arrivée (check-in) | Hébergement | `hebergement` › `details` (l. 197) |
-| 6 | Heure de départ (check-out) | Hébergement | `hebergement` › `details` (l. 198) |
-| 7 | Autres détails pratiques (« Bon à savoir »). *Ligne supprimable.* | Hébergement | `hebergement` › `details` (l. 199) |
-| 8 | Autres questions de la FAQ (question et réponse ; ajoutez-en autant que nécessaire) | Infos pratiques | `infos` › `questions` (l. 234–235) |
-| 9 | Date limite de réponse au RSVP | RSVP | `rsvp` › `date_limite` (l. 246) |
-| 10 | E-mail de contact des mariés | Contact | `contact` › `email` (l. 307) |
-| 11 | Téléphone de Charlène | Contact | `contact` › `personnes` (l. 309) |
-| 12 | Téléphone de Julien | Contact | `contact` › `personnes` (l. 310) |
+| 1 | Horaire du brunch | Programme › Dimanche | `programme` › `jours` › Dimanche › `heure` (l. 151) |
+| 2 | Lieu du brunch dans le domaine | Programme › Dimanche | `programme` › `jours` › Dimanche › `lieu` (l. 152) |
+| 3 | Informations parking | Accès | `acces` › `blocs` › Parking › `texte` (l. 177) |
+| 4 | Venir en train ou en avion (gares, aéroports…). *Bloc facultatif, supprimable.* | Accès | `acces` › `blocs` › En train ou en avion › `texte` (l. 186) |
+| 5 | Heure d'arrivée (check-in) | Hébergement | `hebergement` › `details` (l. 200) |
+| 6 | Heure de départ (check-out) | Hébergement | `hebergement` › `details` (l. 201) |
+| 7 | Autres détails pratiques (« Bon à savoir »). *Ligne supprimable.* | Hébergement | `hebergement` › `details` (l. 202) |
+| 8 | Autres questions de la FAQ (question et réponse ; ajoutez-en autant que nécessaire) | Infos pratiques | `infos` › `questions` (l. 237–238) |
+| 9 | Date limite de réponse au RSVP | RSVP | `rsvp` › `date_limite` (l. 249) |
+| 10 | E-mail de contact des mariés | Contact | `contact` › `email` (l. 310) |
+| 11 | Téléphone de Charlène | Contact | `contact` › `personnes` (l. 312) |
+| 12 | Téléphone de Julien | Contact | `contact` › `personnes` (l. 313) |
 
 Les numéros de ligne correspondent à la version livrée et peuvent bouger quand vous modifiez le fichier. Le plus simple est de rechercher `TODO`.
 
@@ -42,7 +42,8 @@ Les numéros de ligne correspondent à la version livrée et peuvent bouger quan
 
 | # | Information | Où |
 |---|---|---|
-| 18 | Photos de couple, et choix de leur emplacement (accueil, après le programme, après les infos pratiques) | `photos/`, puis `site/content.php` › `photos` (voir README › « Photos ») |
+| 18 | Photos de couple (facultatif ; les 3 photos du château sont déjà en place) | `photos/`, puis `site/content.php` › `photos` (voir README › « Photos ») |
+| 19 | Vérifier l'accord du château (ou du photographe) pour utiliser ses photos | — |
 
 ## 5. Textes rédigés à valider
 

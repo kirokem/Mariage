@@ -2,7 +2,7 @@
 /** Section Accueil. */
 defined('CJ') || exit;
 $a   = content('accueil');
-$img = photo('accueil', '(min-width: 64em) 45vw, 100vw', true);
+$img = photo('accueil', '(min-width: 64em) 40vw, (min-width: 40em) 34rem, 100vw', true);
 ?>
 <section id="accueil" class="hero<?= $img ? ' hero--photo' : '' ?>" aria-labelledby="accueil-titre">
   <div class="hero__text">

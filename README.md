@@ -44,7 +44,7 @@ Site du mariage de Charlène et Julien, du 11 au 13 juin 2027, au Château des O
     └── assets/
         ├── css/site.css
         ├── js/site.js
-        ├── fonts/          Bebas Neue + Inter (woff2, licence OFL)
+        ├── fonts/          Cormorant Garamond + Bebas Neue + Inter (woff2, OFL)
         └── photos/         photos WebP générées
 ```
 
@@ -205,7 +205,11 @@ Puis ouvrez http://127.0.0.1:8080. Le serveur intégré de PHP ignore le `.htacc
 
 ## 5. Photos
 
-Le site est conçu pour être beau **sans aucune photo**. Quand une photo est absente, son emplacement disparaît simplement, sans cadre vide.
+Trois photos du château sont en place : la façade sur l'accueil, la vue sur la lavande en bandeau après le Programme, et la piscine dans l'Hébergement.
+
+> ⚠️ Ces photos semblent provenir du site du château : assurez-vous d'avoir l'accord du domaine (ou du photographe) pour les utiliser.
+
+Le site reste beau **sans aucune photo**. Quand une photo est absente, son emplacement disparaît simplement, sans cadre vide.
 
 Pour en ajouter :
 
@@ -216,17 +220,20 @@ Pour en ajouter :
    tools/optimize-photos.sh
    ```
 
-   Le script crée des fichiers WebP en 480, 960, 1600 et 2400 px de large dans `site/assets/photos/`. Il conserve les **proportions d'origine** (aucun recadrage) et supprime les métadonnées, y compris la position GPS. Il affiche le **nom** de chaque photo, par exemple `charlene-julien-1`.
+   Le script crée des fichiers WebP en 480, 720, 960, 1440 et 2000 px de large dans `site/assets/photos/`. Il conserve les **proportions d'origine** (aucun recadrage) et supprime les métadonnées, y compris la position GPS. Il affiche le **nom** de chaque photo, par exemple `charlene-julien-1`.
 3. Dans `site/content.php` › `photos`, indiquez ce nom et une courte description (lue par les lecteurs d'écran) :
 
    ```php
    'accueil' => ['fichier' => 'charlene-julien-1', 'description' => 'Charlène et Julien dans les vignes'],
    ```
 
-   Trois emplacements sont disponibles :
-   - `accueil` : en grand sur la page d'accueil. Sur grand écran, à côté des prénoms ; sur mobile, en dessous.
-   - `apres_programme` : entre le Programme et l'Accès.
-   - `apres_infos` : entre les Infos pratiques et le RSVP.
+   Quatre emplacements sont disponibles :
+   - `accueil` : sur la page d'accueil. Sur grand écran, à côté des prénoms ; sur mobile, juste après le premier écran.
+   - `apres_programme` : bandeau pleine largeur entre le Programme et l'Accès.
+   - `hebergement` : à côté du texte de la section Hébergement.
+   - `apres_infos` : bandeau pleine largeur entre les Infos pratiques et le RSVP.
+
+   L'option `'recadrer' => true` autorise un recadrage panoramique, utile pour les paysages des bandeaux. Laissez `false` pour les photos avec des visages.
 4. Déposez `site/assets/photos/` et `content.php` sur le serveur.
 
 Les photos sont chargées en différé, sauf celle de l'accueil, et le navigateur choisit la taille adaptée à l'écran (`srcset`).
@@ -254,7 +261,7 @@ Les tests ont été faits en local, avec le serveur PHP intégré et un faux ser
 | Page | Performance | Accessibilité | Bonnes pratiques | SEO |
 |---|---|---|---|---|
 | Page d'entrée | 100 | 100 | 100 | 63* |
-| Site (connecté) | 99 | 100 | 100 | 63* |
+| Site (connecté, avec photos) | 99 | 100 | 100 | 66* |
 
 \* Le score SEO est **volontairement** pénalisé par l'interdiction d'indexation (`noindex` et `robots.txt`) que vous avez demandée. Tous les autres critères SEO sont validés.
 
@@ -264,5 +271,5 @@ En local, Lighthouse signale aussi le cache et la compression : sur Infomaniak, 
 
 ## Licences
 
-- **Bebas Neue** et **Inter** : SIL Open Font License 1.1 (`site/assets/fonts/OFL-*.txt`).
+- **Cormorant Garamond**, **Bebas Neue** et **Inter** : SIL Open Font License 1.1 (`site/assets/fonts/OFL-*.txt`).
 - **PHPMailer** : LGPL 2.1 (`site/lib/PHPMailer/LICENSE`).
