@@ -1,0 +1,54 @@
+# ==========================================================================
+#  Charlène & Julien — configuration Apache (Infomaniak, hébergement mutualisé)
+# ==========================================================================
+
+# Pas de liste des fichiers d'un dossier
+Options -Indexes
+DirectoryIndex index.php
+
+# Encodage par défaut
+AddDefaultCharset UTF-8
+
+# --- Forcer le HTTPS ------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # --- Bloquer les dossiers et fichiers internes --------------------------
+  RewriteRule ^(inc|lib|storage)(/|$) - [F,L]
+  RewriteRule ^(content|config|config\.example)\.php$ - [F,L]
+  RewriteRule (^|/)\.(?!well-known/) - [F,L]
+  RewriteRule \.(md|log|json|lock|sh|dist|bak|sql)$ - [F,L]
+</IfModule>
+
+# Protection de secours si mod_rewrite était indisponible
+<FilesMatch "^(content|config|config\.example)\.php$">
+  Require all denied
+</FilesMatch>
+
+# --- En-têtes ---------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "same-origin"
+  # Polices : autoriser le chargement par la page (préchargement « crossorigin »)
+  <FilesMatch "\.woff2$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+  # Fichiers statiques versionnés (?v=…) : cache long et immuable
+  <FilesMatch "\.(css|js|woff2|webp|svg|ico|png)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# --- Types et compression ---------------------------------------------------
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript image/svg+xml application/json text/plain
+</IfModule>

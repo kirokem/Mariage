@@ -1,0 +1,3 @@
+Déposez ici les photos originales (JPG, PNG, HEIC converti…),
+puis lancez : tools/optimize-photos.sh
+Voir README.md, section « Photos ».

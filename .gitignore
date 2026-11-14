@@ -1,6 +1,13 @@
-node_modules/
-dist/
-.env
-server/data/*.sqlite
-server/uploads/*
-!server/uploads/.gitkeep
+# Configuration sensible (mot de passe, SMTP) : jamais dans le dépôt
+site/config.php
+
+# Données générées sur le serveur
+site/storage/*
+!site/storage/.htaccess
+
+# Photos originales (lourdes, privées) : seules les versions WebP sont publiées
+photos/*
+!photos/LISEZ-MOI.txt
+
+.DS_Store
+Thumbs.db
