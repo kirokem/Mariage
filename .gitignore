@@ -11,3 +11,4 @@ photos/*
 
 .DS_Store
 Thumbs.db
+*.zip
