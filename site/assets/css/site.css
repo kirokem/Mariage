@@ -149,15 +149,6 @@ mark.todo {
 }
 
 /* ---------- Éléments typographiques communs ---------- */
-.eyebrow {
-  font-family: var(--titre);
-  font-size: .95rem;
-  letter-spacing: .34em;
-  text-transform: uppercase;
-  color: var(--olive);
-  margin-bottom: 1rem;
-}
-
 .rule {
   display: block;
   width: 4rem;
@@ -371,14 +362,6 @@ body.menu-open { overflow: hidden; }
   letter-spacing: .01em;
   color: var(--encre);
 }
-.section__head::after {
-  content: "";
-  display: block;
-  width: 3rem;
-  height: 1px;
-  margin: 1.75rem auto 0;
-  background: var(--sauge);
-}
 .section__intro {
   margin: 1.5rem auto 0;
   max-width: 34rem;
@@ -423,30 +406,52 @@ body.menu-open { overflow: hidden; }
   color: var(--olive);
 }
 
-.hero__dates {
-  font-family: var(--titre);
-  font-size: clamp(1.25rem, 5vw, 1.6rem);
-  letter-spacing: .32em;
-  line-height: 1;
+/* Les trois jours du week-end, chacun relié à son programme */
+.hero__days {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.75rem, 8vw, 3.5rem);
+  margin-top: clamp(2rem, 6vw, 2.75rem);
+}
+.hero__days a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 3rem;
   color: var(--encre);
-  padding-left: .32em; /* compense l'interlettrage pour un centrage parfait */
+  text-decoration: none;
+}
+.hero__num {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.75rem, 12vw, 3.75rem);
+  line-height: 1;
+  font-variant-numeric: lining-nums;
+  transition: color .25s ease;
+}
+.hero__day {
+  margin-top: .45rem;
+  padding-left: .22em; /* compense l'interlettrage pour un centrage exact */
+  font-family: var(--titre);
+  font-size: .9rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+.hero__days a:hover .hero__num { color: var(--olive); }
+.hero__month {
+  margin-top: 1.1rem;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1.2;
 }
 .hero__place {
-  margin: 1.25rem 0 2.75rem;
+  margin: .35rem 0 2.75rem;
   font-family: var(--serif);
   font-style: italic;
   font-size: 1.35rem;
   line-height: 1.4;
-}
-.hero__place span {
-  display: block;
-  margin-top: .5rem;
-  font-family: var(--titre);
-  font-style: normal;
-  font-size: .9rem;
-  letter-spacing: .32em;
-  text-transform: uppercase;
-  color: var(--olive);
 }
 
 /* Avec photo : sur mobile, la photo suit le texte dans ses proportions
@@ -490,6 +495,7 @@ body.menu-open { overflow: hidden; }
 }
 .day__date {
   font-family: var(--serif);
+  font-variant-numeric: lining-nums;
   font-weight: 300;
   font-size: clamp(2.6rem, 10vw, 3.4rem);
   line-height: 1.05;
@@ -538,19 +544,18 @@ body.menu-open { overflow: hidden; }
   line-height: 1.15;
   color: var(--encre);
 }
-.moment__meta {
-  margin-top: .35rem;
-  font-size: .8rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+.moment__when {
+  margin-top: .3rem;
+  font-weight: 600;
+  font-size: .9rem;
   color: var(--olive);
-  line-height: 1.6;
 }
-.moment__meta span + span::before {
-  content: "·";
-  margin: 0 .6em;
-  color: var(--sauge);
+.moment__where {
+  margin-top: .3rem;
+  font-size: .95rem;
+  color: var(--encre);
 }
+.moment__when + .moment__where { margin-top: .05rem; }
 .moment__mood {
   margin-top: .5rem;
   font-family: var(--serif);
@@ -851,11 +856,9 @@ textarea.input { resize: vertical; min-height: 6rem; }
   line-height: 1.2;
 }
 .footer__meta {
-  margin-top: 1.5rem;
-  font-family: var(--titre);
+  margin-top: 1.25rem;
   font-size: .9rem;
-  letter-spacing: .26em;
-  text-transform: uppercase;
+  line-height: 1.6;
   color: var(--encre);
 }
 
@@ -903,10 +906,9 @@ textarea.input { resize: vertical; min-height: 6rem; }
 /* ---------- Apparition douce au défilement ---------- */
 .js .reveal {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 1.1s ease, transform 1.1s ease;
+  transition: opacity 1.2s ease;
 }
-.js .reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal.is-visible { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

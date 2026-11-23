@@ -58,7 +58,7 @@ include __DIR__ . '/head.php';
 <footer class="footer">
   <p class="footer__text"><?= t(content('pied')['texte'] ?? '') ?></p>
   <p class="footer__sign"><?= e($site['signature']) ?></p>
-  <p class="footer__meta"><?= e($site['dates']) ?> · <?= e($site['lieu']) ?></p>
+  <p class="footer__meta"><?= e($site['dates_long']) ?><br><?= e($site['lieu']) ?>, <?= e($site['region']) ?></p>
 </footer>
 </body>
 </html>

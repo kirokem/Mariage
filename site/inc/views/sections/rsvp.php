@@ -27,7 +27,6 @@ $intro = implode('<strong>' . t($r['date_limite']) . '</strong>', array_map('t',
 <section id="rsvp" class="section" aria-labelledby="rsvp-titre">
   <div class="wrap wrap--narrow">
     <header class="section__head reveal">
-      <p class="eyebrow"><?= t($r['surtitre']) ?></p>
       <h2 class="section__title" id="rsvp-titre"><?= t($r['titre']) ?></h2>
       <p class="section__intro"><?= $intro ?></p>
     </header>

@@ -36,6 +36,7 @@ return [
         'prenom_2'    => 'Julien',
         'dates'       => '11 – 13 juin 2027',
         'dates_long'  => 'Du vendredi 11 au dimanche 13 juin 2027',
+        'mois'        => 'Juin 2027',
         'lieu'        => 'Château des Oliviers de Salettes',
         'region'      => 'Drôme provençale',
         'signature'   => 'Charlène & Julien',
@@ -70,7 +71,6 @@ return [
     /*  Accueil                                                           */
     /* ------------------------------------------------------------------ */
     'accueil' => [
-        'surtitre' => 'Nous nous marions',
         'bouton'   => 'Répondre à l’invitation',
     ],
 
@@ -96,7 +96,6 @@ return [
     /*  Programme du week-end                                              */
     /* ------------------------------------------------------------------ */
     'programme' => [
-        'surtitre' => 'Le week-end',
         'titre'    => 'Programme',
         'intro'    => 'Trois jours pour nous retrouver, au cœur de la Drôme provençale.',
         'jours'    => [
@@ -161,7 +160,6 @@ return [
     /*  Accès                                                             */
     /* ------------------------------------------------------------------ */
     'acces' => [
-        'surtitre'  => 'Venir au château',
         'titre'     => 'Accès',
         'adresse'   => [
             'Château des Oliviers de Salettes',
@@ -192,7 +190,6 @@ return [
     /*  Hébergement                                                       */
     /* ------------------------------------------------------------------ */
     'hebergement' => [
-        'surtitre' => 'Dormir sur place',
         'titre'    => 'Hébergement',
         'texte'    => 'Pendant tout le week-end, vous serez nos invités au château : chacune et chacun y sera logé. Nous nous occupons d’attribuer les chambres, vous n’avez rien à réserver.',
         // Détails pratiques, présentés sous forme de liste.
@@ -207,7 +204,6 @@ return [
     /*  Infos pratiques / FAQ                                             */
     /* ------------------------------------------------------------------ */
     'infos' => [
-        'surtitre' => 'Bon à savoir',
         'titre'    => 'Infos pratiques',
         'dress_code' => [
             'question' => 'Dress code',
@@ -244,7 +240,6 @@ return [
     /*  RSVP                                                              */
     /* ------------------------------------------------------------------ */
     'rsvp' => [
-        'surtitre'      => 'Votre réponse',
         'titre'         => 'RSVP',
         'date_limite'   => TODO, // ex. '15 mars 2027'
         'intro'         => 'Merci de nous répondre avant le {date_limite}. Une seule réponse suffit pour plusieurs personnes : indiquez simplement tous les prénoms et noms concernés.',
@@ -304,7 +299,6 @@ return [
     /*  Contact                                                           */
     /* ------------------------------------------------------------------ */
     'contact' => [
-        'surtitre' => 'Une question ?',
         'titre'    => 'Contact',
         'texte'    => 'Pour toute question, n’hésitez pas à nous écrire ou à nous appeler.',
         'email'    => TODO,

@@ -6,7 +6,6 @@ $a = content('acces');
 <section id="acces" class="section section--cream" aria-labelledby="acces-titre">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="eyebrow"><?= t($a['surtitre']) ?></p>
       <h2 class="section__title" id="acces-titre"><?= t($a['titre']) ?></h2>
     </header>
 

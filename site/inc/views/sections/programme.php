@@ -6,14 +6,13 @@ $p = content('programme');
 <section id="programme" class="section" aria-labelledby="programme-titre">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="eyebrow"><?= t($p['surtitre']) ?></p>
       <h2 class="section__title" id="programme-titre"><?= t($p['titre']) ?></h2>
       <?php if (filled($p['intro'] ?? '')): ?><p class="section__intro"><?= t($p['intro']) ?></p><?php endif; ?>
     </header>
 
     <ol class="timeline">
-      <?php foreach ($p['jours'] as $jour): ?>
-      <li class="day reveal">
+      <?php foreach ($p['jours'] as $i => $jour): ?>
+      <li class="day reveal" id="jour-<?= $i + 1 ?>">
         <h3 class="day__head">
           <span class="day__name"><?= t($jour['jour']) ?></span>
           <span class="day__date"><?= t($jour['date']) ?></span>
@@ -25,12 +24,8 @@ $p = content('programme');
             <?php foreach ($jour['moments'] as $m): ?>
             <li class="moment">
               <h4 class="moment__title"><?= t($m['titre']) ?></h4>
-              <?php if (filled($m['heure'] ?? '') || filled($m['lieu'] ?? '')): ?>
-              <p class="moment__meta">
-                <?php if (filled($m['heure'] ?? '')): ?><span><?= t($m['heure']) ?></span><?php endif; ?>
-                <?php if (filled($m['lieu'] ?? '')): ?><span><?= t($m['lieu']) ?></span><?php endif; ?>
-              </p>
-              <?php endif; ?>
+              <?php if (filled($m['heure'] ?? '')): ?><p class="moment__when"><?= t($m['heure']) ?></p><?php endif; ?>
+              <?php if (filled($m['lieu'] ?? '')): ?><p class="moment__where"><?= t($m['lieu']) ?></p><?php endif; ?>
               <?php if (filled($m['ambiance'] ?? '')): ?><p class="moment__mood"><?= t($m['ambiance']) ?></p><?php endif; ?>
             </li>
             <?php endforeach; ?>

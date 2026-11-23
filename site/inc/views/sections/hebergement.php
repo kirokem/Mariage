@@ -7,7 +7,6 @@ $img = photo('hebergement', '(min-width: 52em) 34rem, 100vw');
 <section id="hebergement" class="section" aria-labelledby="hebergement-titre">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="eyebrow"><?= t($h['surtitre']) ?></p>
       <h2 class="section__title" id="hebergement-titre"><?= t($h['titre']) ?></h2>
     </header>
 

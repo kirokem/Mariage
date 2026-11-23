@@ -7,7 +7,6 @@ $dc = $f['dress_code'];
 <section id="infos" class="section section--cream" aria-labelledby="infos-titre">
   <div class="wrap wrap--narrow">
     <header class="section__head reveal">
-      <p class="eyebrow"><?= t($f['surtitre']) ?></p>
       <h2 class="section__title" id="infos-titre"><?= t($f['titre']) ?></h2>
     </header>
 

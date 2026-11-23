@@ -6,7 +6,6 @@ $c = content('contact');
 <section id="contact" class="section section--sage" aria-labelledby="contact-titre">
   <div class="wrap wrap--narrow center">
     <header class="section__head reveal">
-      <p class="eyebrow"><?= t($c['surtitre']) ?></p>
       <h2 class="section__title" id="contact-titre"><?= t($c['titre']) ?></h2>
       <?php if (filled($c['texte'] ?? '')): ?><p class="section__intro"><?= t($c['texte']) ?></p><?php endif; ?>
     </header>

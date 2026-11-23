@@ -51,5 +51,5 @@ Ces phrases ne figuraient pas mot pour mot dans le cahier des charges. Je les ai
 
 - Programme › Vendredi, sous-titre « Bienvenue ». Programme › Cocktail : « Un verre à la main, le temps de se retrouver. »
 - Programme › Brunch, ambiance : « Pour prolonger la fête en douceur, avant de se dire au revoir. »
-- Accueil, surtitre « Nous nous marions ». Pied de page, « Avec toute notre affection ».
+- Pied de page, « Avec toute notre affection ».
 - Messages de confirmation du RSVP et textes des e-mails d'accusé de réception (`rsvp` › `merci_oui`, `merci_non`, `email_invite_oui`, `email_invite_non`).
